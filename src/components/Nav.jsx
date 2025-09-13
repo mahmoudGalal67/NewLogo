@@ -111,7 +111,7 @@ export default function Nav() {
     <>
       <div className="screen-wrapper w-screen h-screen fixed bg-white z-10 top-0 left-0 opacity-0"></div>
 
-      <nav className="md:container nav-container h-[120px] fixed z-10 mt-8">
+      <nav className="md:container nav-container 2xl:h-[120px] h-[100px] fixed z-10 mt-8">
         <div className="nav-container-animate absolute w-full h-full inset-0 bg-white rounded-[68px]"></div>
 
         {isMobile ? (
@@ -199,13 +199,13 @@ export default function Nav() {
             </Link>
             {Links.map((item, index) => (
               <div
-                className="nav-link lg:text-[32px] text-[24px] font-[700] hover:text-[#3067D5]"
+                className="nav-link lg:text-[28px] text-[24px] font-[700] hover:text-[#3067D5]"
                 key={index}
               >
                 <a href={`#${item.link}`}>{item.title}</a>
               </div>
             ))}
-            <div className="login text-[32px] font-[700] bg-[#3067D5] hover:bg-[#18397b] text-white p-4 px-10 rounded-[68px]">
+            <div className="login text-[28px] font-[700] bg-[#3067D5] hover:bg-[#18397b] text-white p-3 px-8 rounded-[68px]">
               <a href="#">sign in</a>
             </div>
           </div>

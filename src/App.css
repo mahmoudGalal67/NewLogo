@@ -67,6 +67,7 @@ section#Projects .wrapper .item:hover {
   transform: scaleY(1.5); /* adjust factor until ~800px */
   transform-origin: top; /* expand from bottom */
   z-index: 10;
+  border: 15px solid rgb(16, 72, 184);
 }
 
 section#Projects .wrapper .item a {

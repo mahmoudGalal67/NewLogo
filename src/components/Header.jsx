@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -60,7 +60,7 @@ export default function Header() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".home",
-        start: "top 7%",
+        start: "top 12%",
         end: "+=100%",
         scrub: true,
         pin: wrapper,
@@ -117,14 +117,17 @@ export default function Header() {
         />
 
         {/* Info Section */}
-        {info.map((item) => (
-          <div className="info flex-around lg:flex-row flex-col absolute bottom-[80px] p-2 gap-8 w-full z-20 pointer-events-none text-white">
+        {info.map((item, i) => (
+          <div
+            key={i}
+            className="info flex-around lg:flex-row flex-col absolute bottom-[80px] p-2 gap-8 w-full z-20 pointer-events-none text-white"
+          >
             <h2 className="lg:text-[48px] text-[32px] font-[600] overflow-hidden">
               <span className="line-heading inline-block">{item.title}</span>
             </h2>
             <p className="lg:text-[18px] text-[16px] lg:text-start text-center">
-              {item?.para?.map((p) => (
-                <span className="block overflow-hidden">
+              {item?.para?.map((p, i) => (
+                <span key={i} className="block overflow-hidden">
                   <span className="line-para inline-block">{p}</span>
                 </span>
               ))}

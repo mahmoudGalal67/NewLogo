@@ -1,8 +1,11 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 function Projects() {
+  const sectionRef = useRef(null);
+
   const projects = [
     { id: "1", img: "/projects/project1.jpg" },
     { id: "2", img: "/projects/project2.jpg" },
@@ -58,9 +61,31 @@ function Projects() {
     ); // 0.4 = halfway through timeline
   };
 
+  useGSAP(() => {
+    const ProjectSection = document.querySelector("#Projects");
+
+    gsap.fromTo(
+      ProjectSection,
+      { autoAlpha: 0, y: "80%" },
+      {
+        autoAlpha: 1,
+        y: 0,
+        duration: 1,
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          end: "bottom 60%",
+          toggleActions: "play none play play",
+        },
+      }
+    );
+  }, []);
+
   return (
     <section
       id="Projects"
+      ref={sectionRef}
       className="lg:p-12 p-5 bg-[#EBEBEB] mt-24 rounded-[48px]"
     >
       <h2 className="mb-8 mt-[5] text-4xl font-bold">مشاريعنا</h2>
@@ -69,7 +94,7 @@ function Projects() {
           <div
             ref={cardRef}
             onClick={(e) => handleClick(item.id, e)}
-            className="item flex flex-col items-center justify-end lg:w-[48%] w-[42%] h-[180px] rounded-t-4xl cursor-pointer"
+            className="item flex flex-col items-center justify-end lg:w-[45%] w-[42%] h-[180px] rounded-t-4xl cursor-pointer"
             style={{ backgroundImage: `url(${item.img})` }}
             key={item.id}
           >
