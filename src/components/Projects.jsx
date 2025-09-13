@@ -4,37 +4,19 @@ import gsap from "gsap";
 
 function Projects() {
   const projects = [
-    {
-      title: "",
-      img: "/projects/project1.png",
-    },
-    {
-      title: "",
-      img: "/projects/project2.jpg",
-    },
-    {
-      title: "",
-      img: "/projects/project3.jpg",
-    },
-    {
-      title: "",
-      img: "/projects/project4.jpg",
-    },
-    {
-      title: "",
-      img: "/projects/project5.jpg",
-    },
-    {
-      title: "",
-      img: "/projects/project6.jpg",
-    },
+    { id: "1", img: "/projects/project1.jpg" },
+    { id: "2", img: "/projects/project2.jpg" },
+    { id: "3", img: "/projects/project3.jpg" },
+    { id: "4", img: "/projects/project4.jpg" },
+    { id: "5", img: "/projects/project5.jpg" },
+    { id: "6", img: "/projects/project6.jpg" },
   ];
 
   const cardRef = useRef();
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    const card = cardRef.current;
+  const handleClick = (id, e) => {
+    const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
 
     // Clone card
@@ -47,38 +29,51 @@ function Projects() {
     clone.style.zIndex = 9999;
     document.body.appendChild(clone);
 
-    // Animate to banner
-    gsap.to(clone, {
-      top: 180, // same as details banner margin-top
-      left: "8%", // same as body padding-inline
-      width: "84vw", // 100vw - (8%*2)
-      height: "340px", // same as details banner img
-      borderRadius: "86px",
-      duration: 1,
-      ease: "power3.inOut",
+    // GSAP timeline
+    const tl = gsap.timeline({
       onComplete: () => {
         document.body.removeChild(clone);
-        // Scroll smoothly to top
         window.scrollTo({ top: 0, behavior: "smooth" });
-        navigate(`/project/1`);
       },
     });
+
+    // Animate
+    tl.to(clone, {
+      top: 180, // banner top
+      left: "8%",
+      width: "84vw",
+      height: "340px",
+      borderRadius: "86px",
+      duration: 1.2,
+      ease: "power3.inOut",
+    });
+
+    // ⏳ Navigate at 50% of animation
+    tl.call(
+      () => {
+        navigate(`/project/${id}`);
+      },
+      null,
+      0.4
+    ); // 0.4 = halfway through timeline
   };
 
   return (
-    <section id="Projects" className="p-12 bg-[#EBEBEB] mt-24 rounded-[48px]">
-      <h2 className="mb-8 text-4xl font-bold">مشاريعنا</h2>
-      <div className="wrapper flex-around gap-12 flex-wrap items-start">
-        {projects.map((item, i) => (
+    <section
+      id="Projects"
+      className="lg:p-12 p-5 bg-[#EBEBEB] mt-24 rounded-[48px]"
+    >
+      <h2 className="mb-8 mt-[5] text-4xl font-bold">مشاريعنا</h2>
+      <div className="wrapper flex-around lg:gap-12 gap-3 flex-wrap items-start">
+        {projects.map((item) => (
           <div
             ref={cardRef}
-            className="item flex flex-col items-center justify-end w-[48%] h-[180px] rounded-t-4xl"
+            onClick={(e) => handleClick(item.id, e)}
+            className="item flex flex-col items-center justify-end lg:w-[48%] w-[42%] h-[180px] rounded-t-4xl cursor-pointer"
             style={{ backgroundImage: `url(${item.img})` }}
+            key={item.id}
           >
-            <button
-              onClick={handleClick}
-              className="p-5 px-16 rounded-t-4xl text-white bg-[#124EB2] font-bold text-3xl"
-            >
+            <button className="lg:p-5 p-3 lg:px-16 px-5 rounded-t-4xl text-white bg-[#124EB2] font-bold lg:text-3xl text-lg">
               View
             </button>
           </div>

@@ -1,11 +1,14 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 function ProjectDetails() {
+  const { id } = useParams();
+
   return (
     <div className="project-details">
       <section className="banner mt-[180px] p-12 rounded-[86px] bg-[#EBEBEB]">
         <img
-          src="/projects/project6.jpg"
+          src={`/projects/project${id}.jpg`}
           className="w-full h-[340px] object-cover  rounded-[86px]"
           alt=""
         />
