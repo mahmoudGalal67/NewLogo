@@ -1,12 +1,14 @@
 import "./App.css";
-import Header from "./components/Header";
+
 import Nav from "./components/Nav";
+
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
-    <div className="home p-8">
+    <div>
       <Nav />
-      <Header />
+      <Outlet />
     </div>
   );
 }

@@ -1,3 +1,76 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  overflow-x: hidden;
+  padding-inline: 8%;
+  scroll-behavior: smooth;
+}
+
+.screen-wrapper {
+  pointer-events: none;
+}
+
+/* Nav */
+
+nav.nav-container {
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 0.5%;
+  position: fixed;
+}
+
 main .wrapper {
   height: calc(100vh - 120px);
 }
+
+.logo {
+  position: relative;
+  z-index: 1000;
+}
+
+/* Nav */
+
+/* ABout-us */
+
+.about-us .wrapper .item {
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 1),
+    rgba(75, 118, 205, 0.78)
+  );
+}
+.about-us .wrapper .item.info-item {
+  background: #ebebeb;
+}
+
+/* ABout-us */
+
+/* Our_projects */
+
+section#Projects .wrapper .item {
+  overflow: hidden;
+  background-position: top;
+  background-size: cover;
+  transition: transform 0.3s ease-in-out, z-index 0s;
+  position: relative; /* needed for stacking */
+}
+
+section#Projects .wrapper .item:hover {
+  transform: scaleY(1.5); /* adjust factor until ~800px */
+  transform-origin: top; /* expand from bottom */
+  z-index: 10;
+}
+
+section#Projects .wrapper .item a {
+  transition: all 0.3s ease-in-out;
+}
+
+section#Projects .wrapper .item a:hover {
+  opacity: 0.65; /* slightly see-through */
+  box-shadow: 0 0 20px rgba(18, 78, 178, 0.8), 0 0 40px rgba(18, 78, 178, 0.6),
+    0 0 60px rgba(18, 78, 178, 0.4); /* glowing scatter */
+}
+
+/* Our_projects */
