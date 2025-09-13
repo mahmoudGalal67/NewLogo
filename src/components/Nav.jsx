@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { Link } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
+import { useGSAP } from "@gsap/react";
 
 const Links = [
   { title: "الرئيسية", link: "About-us" },
@@ -18,8 +19,56 @@ export default function Nav() {
   const burgerRef = useRef(null);
   const closeRef = useRef(null);
   const linksRef = useRef([]); // array ref for nav links
+  useGSAP(() => {
+    // Slide nav-container to right while keeping children in place
+    // gsap.to(".nav-container", {
+    //   opacity: 0,
+    // });
+    gsap.from(".nav-container-animate", {
+      xPercent: 150,
+      duration: 1.8,
+    });
 
-  // init states once
+    gsap.from(".nav-link", {
+      y: -150,
+      duration: 2,
+    });
+
+    gsap.from(".login", {
+      scale: 0,
+      duration: 2,
+    });
+
+    // Animate logo to center of screen
+    const rect = logoRef.current.getBoundingClientRect();
+
+    gsap.fromTo(
+      logoRef.current,
+      {
+        position: "absolute",
+        top: window.innerHeight / 2 - rect.height / 2,
+        left: window.innerWidth / 14,
+        scale: 8,
+      },
+      {
+        position: "relative", // back to normal
+        top: 0,
+        left: 0,
+        scale: 1,
+        duration: 2,
+
+        ease: "power3.out",
+      }
+    );
+
+    // Fade in screen overlay
+    gsap.from(".screen-wrapper", {
+      opacity: 1,
+      duration: 3.5,
+      delay: 0.5,
+    });
+  });
+
   useEffect(() => {
     // ensure array is empty initially
     linksRef.current = [];
