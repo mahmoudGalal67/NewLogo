@@ -55,9 +55,9 @@ function About() {
     >
       <div
         ref={ref}
-        className="wrapper flex  justify-between flex-wrap md:gap-8 gap-3"
+        className="wrapper flex  justify-between flex-wrap md:gap-8 gap-1"
       >
-        <div className="item info-item flex flex-col items-start justify-center gap-1 lg:p-[28px] p-[16px] lg:py-[72px] py-[48px] rounded-[48px] lg:w-[64%] w-full">
+        <div className="item info-item flex flex-col items-start justify-center gap-1 lg:p-[28px] p-[12px] lg:py-[72px] py-[48px] rounded-[48px] lg:w-[64%] w-full">
           <h3 className="text-[42px] font-bold md:mr-16 mr-0 mb-5">من نحن </h3>
           <p className="text-[28px text-right md:w-[65%]">
             شركة سعودية رائدة في تصميم العلامات التجارية لنجعل من هويات وشعارات
@@ -65,7 +65,7 @@ function About() {
             حول العالم
           </p>
         </div>
-        <div className="item flex flex-col items-center justify-center gap-1 lg:p-[28px] p-[16px] lg:py-[72px] py-[48px] rounded-[48px] lg:w-[28%] w-[42%]">
+        <div className="item flex flex-col items-center justify-center gap-1 lg:p-[28px] p-[12px] lg:py-[72px] py-[48px] rounded-[48px] lg:w-[28%] w-[45%]">
           {inView && (
             <CountUp start={0} end={180} duration={1.75} suffix=" +">
               {({ countUpRef }) => (
@@ -76,9 +76,11 @@ function About() {
               )}
             </CountUp>
           )}
-          <span className="text-[28px text-white">مشروع ناجح</span>
+          <span className="lg:text-[28px] text-[14px] text-black">
+            مشروع ناجح
+          </span>
         </div>
-        <div className="item flex flex-col items-center justify-center gap-1 lg:p-[28px] p-[16px] lg:py-[72px] py-[48px] rounded-[48px] lg:w-[28%] w-[42%]">
+        <div className="item flex flex-col items-center justify-center gap-1 lg:p-[28px] p-[12px] lg:py-[72px] py-[48px] rounded-[48px] lg:w-[28%] w-[45%]">
           {inView && (
             <CountUp start={0} end={500} duration={1.75} suffix=" +">
               {({ countUpRef }) => (
@@ -89,9 +91,11 @@ function About() {
               )}
             </CountUp>
           )}
-          <span className="text-[28px text-white">عميل سعيد </span>
+          <span className="lg:text-[28px] text-[14px] text-black">
+            عميل سعيد{" "}
+          </span>
         </div>
-        <div className="item flex flex-col items-center justify-center gap-1 lg:p-[28px] p-[16px] lg:py-[72px] py-[48px] rounded-[48px] lg:w-[28%] w-[42%]">
+        <div className="item flex flex-col items-center justify-center gap-1 lg:p-[28px] p-[12px] lg:py-[72px] py-[48px] rounded-[48px] lg:w-[28%] w-[45%]">
           {inView && (
             <CountUp start={0} end={30} duration={1.75} suffix=" +">
               {({ countUpRef }) => (
@@ -102,9 +106,11 @@ function About() {
               )}
             </CountUp>
           )}
-          <span className="text-[28px text-white">سنة خبرة </span>
+          <span className="lg:text-[28px] text-[14px] text-black">
+            سنة خبرة{" "}
+          </span>
         </div>
-        <div className="item flex flex-col items-center justify-center gap-1 lg:p-[28px] p-[16px] lg:py-[72px] py-[48px] rounded-[48px] lg:w-[28%] w-[42%]">
+        <div className="item flex flex-col items-center justify-center gap-1 lg:p-[28px] p-[12px] lg:py-[72px] py-[48px] rounded-[48px] lg:w-[28%] w-[45%]">
           {inView && (
             <CountUp start={0} end={20} duration={1.75} suffix=" +">
               {({ countUpRef }) => (
@@ -115,7 +121,9 @@ function About() {
               )}
             </CountUp>
           )}
-          <span className="text-[28px text-white">شريك استراتيجي </span>
+          <span className="lg:text-[28px] text-[14px] text-black">
+            شريك استراتيجي{" "}
+          </span>
         </div>
       </div>
     </section>

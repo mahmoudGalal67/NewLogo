@@ -92,13 +92,13 @@ function Projects() {
       <div className="wrapper flex-around lg:gap-12 gap-3 flex-wrap items-start">
         {projects.map((item) => (
           <div
-            ref={cardRef}
             onClick={(e) => handleClick(item.id, e)}
-            className="item flex flex-col items-center justify-end lg:w-[45%] w-[42%] h-[180px] rounded-t-4xl cursor-pointer"
+            ref={cardRef}
+            className="item flex flex-col items-center justify-center lg:w-[45%] w-[42%] h-[180px] rounded-4xl cursor-pointer"
             style={{ backgroundImage: `url(${item.img})` }}
             key={item.id}
           >
-            <button className="lg:p-5 p-3 lg:px-16 px-5 rounded-t-4xl text-white bg-[#124EB2] font-bold lg:text-3xl text-lg">
+            <button className="lg:p-5 p-3 lg:px-16 px-5 rounded-4xl text-white font-bold lg:text-2xl text-lg opacity-0">
               View
             </button>
           </div>

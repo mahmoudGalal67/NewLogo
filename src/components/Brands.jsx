@@ -22,10 +22,14 @@ function Brands() {
   return (
     <div id="Brands">
       <div className="wrapper p-[4%]">
-        <h3 className="mb-5 text-3xl">Brand</h3>
+        <h3 className="mb-8 mt-[5] text-4xl font-bold">Brand</h3>
         <Swiper
-          spaceBetween={50}
-          slidesPerView={8}
+          breakpoints={{
+            320: { slidesPerView: 3, spaceBetween: 10 }, // mobile
+            640: { slidesPerView: 4, spaceBetween: 20 }, // tablets
+            1024: { slidesPerView: 6, spaceBetween: 30 }, // small desktops
+            1440: { slidesPerView: 8, spaceBetween: 30 }, // large screens
+          }}
           className="mb-5"
           loop={true} // infinite loop
           dir="rtl" // make direction right-to-left
@@ -43,8 +47,12 @@ function Brands() {
           ))}
         </Swiper>
         <Swiper
-          spaceBetween={50}
-          slidesPerView={8}
+          breakpoints={{
+            320: { slidesPerView: 3, spaceBetween: 10 }, // mobile
+            640: { slidesPerView: 4, spaceBetween: 20 }, // tablets
+            1024: { slidesPerView: 6, spaceBetween: 30 }, // small desktops
+            1440: { slidesPerView: 8, spaceBetween: 30 }, // large screens
+          }}
           className="mb-5"
           loop={true} // infinite loop
           dir="ltr" // make direction right-to-left
@@ -62,8 +70,12 @@ function Brands() {
           ))}
         </Swiper>
         <Swiper
-          spaceBetween={50}
-          slidesPerView={8}
+          breakpoints={{
+            320: { slidesPerView: 3, spaceBetween: 10 }, // mobile
+            640: { slidesPerView: 4, spaceBetween: 20 }, // tablets
+            1024: { slidesPerView: 6, spaceBetween: 30 }, // small desktops
+            1440: { slidesPerView: 8, spaceBetween: 30 }, // large screens
+          }}
           className="mb-5"
           loop={true} // infinite loop
           dir="rtl" // make direction right-to-left
@@ -81,8 +93,12 @@ function Brands() {
           ))}
         </Swiper>
         <Swiper
-          spaceBetween={50}
-          slidesPerView={8}
+          breakpoints={{
+            320: { slidesPerView: 3, spaceBetween: 10 }, // mobile
+            640: { slidesPerView: 4, spaceBetween: 20 }, // tablets
+            1024: { slidesPerView: 6, spaceBetween: 30 }, // small desktops
+            1440: { slidesPerView: 8, spaceBetween: 30 }, // large screens
+          }}
           className="mb-5"
           loop={true} // infinite loop
           dir="ltr" // make direction right-to-left

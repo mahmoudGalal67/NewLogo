@@ -7,7 +7,7 @@ const ContactForm = () => {
       dir="ltr"
     >
       <div className="bg-[#E0E0E0] rounded-xl shadow-lg p-8 w-full md:w-[80%]  text-start">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6">Contact us</h1>
+        <h1 className="mb-8 mt-[5] text-4xl font-bold">Contact us</h1>
 
         <form>
           {/* Name Input */}

@@ -28,6 +28,15 @@ nav.nav-container {
   position: fixed;
   width: 75%;
 }
+nav.nav-container .nav-link {
+  position: relative;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  color: #000;
+  transition: color 0.3s ease;
+  z-index: 2; /* above indicator */
+}
 
 main .wrapper {
   height: calc(100vh - 120px);
@@ -36,6 +45,32 @@ main .wrapper {
 .logo {
   position: relative;
   z-index: 1000;
+}
+
+nav.nav-container .nav-link.active {
+  color: white;
+  z-index: 1000000;
+  position: relative;
+}
+nav.nav-container .nav-link:hover {
+  color: #124eb2;
+}
+nav.nav-container .nav-link.active:hover {
+  color: white;
+}
+
+.nav-indicator {
+  position: absolute;
+  height: 40px;
+  top: 0;
+  transform: translateY(50%);
+  width: 100px; /* will be set by JS */
+  background: #124eb2;
+  border-radius: 30px;
+  bottom: 5px;
+  left: 0;
+  z-index: 1;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 /* Nav */
@@ -83,20 +118,22 @@ section#Projects .wrapper .item {
 }
 
 section#Projects .wrapper .item:hover {
-  transform: scaleY(1.5); /* adjust factor until ~800px */
-  transform-origin: top; /* expand from bottom */
+  transform: scale(1.2); /* adjust factor until ~800px */
   z-index: 10;
-  border: 15px solid rgb(16, 72, 184);
+  opacity: 0.65; /* slightly see-through */
+  box-shadow: 0 0 20px rgba(18, 78, 178, 0.8), 0 0 40px rgba(18, 78, 178, 0.6),
+    0 0 60px rgba(18, 78, 178, 0.4); /* glowing scatter */
 }
 
 section#Projects .wrapper .item a {
   transition: all 0.3s ease-in-out;
 }
 
-section#Projects .wrapper .item a:hover {
-  opacity: 0.65; /* slightly see-through */
-  box-shadow: 0 0 20px rgba(18, 78, 178, 0.8), 0 0 40px rgba(18, 78, 178, 0.6),
-    0 0 60px rgba(18, 78, 178, 0.4); /* glowing scatter */
+section#Projects .wrapper .item:hover button {
+  opacity: 1; /* slightly see-through */
+  transition: all 0.3s ease-in;
+  text-shadow: 0 0 20px rgba(17, 71, 164, 1), 0 0 40px rgba(19, 60, 132, 1),
+    0 0 60px rgba(16, 59, 134, 1); /* glowing scatter */
 }
 
 /* Our_projects */
