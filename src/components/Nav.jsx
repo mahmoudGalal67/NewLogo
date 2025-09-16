@@ -13,8 +13,8 @@ function Nav() {
   const logoRef = useRef();
   useGSAP(() => {
     // Animate links individually
-    gsap.from(".nav-link", { y: -150, duration: 4 });
-    gsap.from(".login", { scale: 0, duration: 3 });
+    gsap.from(".nav-link", { y: -150, duration: 4, delay: 0.4 });
+    gsap.from(".login", { scale: 0, duration: 3, delay: 0.4 });
 
     // Animate the logo separately
     const logo = logoRef.current;
@@ -27,12 +27,17 @@ function Nav() {
       y: deltaY,
       scale: 6,
       duration: 3,
+      delay: 0.4,
       ease: "power3.out",
     });
 
     // Screen overlay
-    gsap.from(".screen-wrapper", { opacity: 1, duration: 3.5 });
-    gsap.from(".nav-container-animate", { xPercent: 150, duration: 3.5 });
+    gsap.from(".screen-wrapper", { opacity: 1, duration: 3.5, delay: 0.4 });
+    gsap.from(".nav-container-animate", {
+      xPercent: 150,
+      duration: 3.5,
+      delay: 0.4,
+    });
   });
 
   return (
