@@ -74,7 +74,7 @@ function Projects() {
         stagger: 0.2,
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 80%",
+          start: "top 140%",
           end: "bottom 60%",
           toggleActions: "play none play play",
         },

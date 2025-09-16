@@ -115,14 +115,29 @@ section#Projects .wrapper .item {
   background-size: cover;
   transition: transform 0.3s ease-in-out, z-index 0s;
   position: relative; /* needed for stacking */
+  background-color: rgba(0, 0, 0, 0.9);
 }
-
+section#Projects .wrapper .item::after {
+  content: "";
+  position: absolute;
+  inset: 0; /* covers the whole card */
+  background: rgba(0, 0, 0, 0.5); /* black overlay */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  z-index: -1;
+  pointer-events: none; /* allow clicks to pass through */
+}
 section#Projects .wrapper .item:hover {
   transform: scale(1.2); /* adjust factor until ~800px */
   z-index: 10;
   opacity: 0.65; /* slightly see-through */
-  box-shadow: 0 0 20px rgba(18, 78, 178, 0.8), 0 0 40px rgba(18, 78, 178, 0.6),
-    0 0 60px rgba(18, 78, 178, 0.4); /* glowing scatter */
+  box-shadow: 0 0 25px rgb(4, 32, 82),
+    /* inner strong glow */ 0 0 50px rgba(5, 33, 82, 0.9),
+    /* mid glow */ 0 0 80px rgba(13, 38, 82, 0.7),
+    /* outer glow */ 0 0 120px rgba(4, 28, 70, 0.5); /* wide soft glow */
+}
+section#Projects .wrapper .item:hover::after {
+  opacity: 1;
 }
 
 section#Projects .wrapper .item a {
@@ -132,8 +147,13 @@ section#Projects .wrapper .item a {
 section#Projects .wrapper .item:hover button {
   opacity: 1; /* slightly see-through */
   transition: all 0.3s ease-in;
-  text-shadow: 0 0 20px rgba(17, 71, 164, 1), 0 0 40px rgba(19, 60, 132, 1),
-    0 0 60px rgba(16, 59, 134, 1); /* glowing scatter */
+  text-shadow: 0 0 10px rgba(7, 55, 138, 1),
+    /* core glow */ 0 0 20px rgba(7, 55, 138, 1),
+    /* stronger inner glow */ 0 0 40px rgba(6, 47, 119, 0.95),
+    /* mid glow */ 0 0 80px rgba(6, 47, 119, 0.9),
+    /* outer glow */ 0 0 120px rgba(8, 39, 92, 0.85),
+    /* wider glow */ 0 0 160px rgba(8, 39, 92, 0.8),
+    /* scatter glow */ 0 0 200px rgba(7, 55, 138, 0.75); /* farthest glow */
 }
 
 /* Our_projects */
