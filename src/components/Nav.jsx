@@ -38,9 +38,9 @@ function Nav() {
   return (
     <>
       <div className="screen-wrapper w-screen h-screen fixed bg-white z-10 top-0 left-0 opacity-0"></div>
-      <nav className=" md:container nav-container h-[100px]  fixed z-10  mt-8">
+      <nav className=" md:container nav-container h-[85px]  fixed z-10  mt-8">
         <div className="nav-container-animate absolute  h-full inset-0 bg-white rounded-[68px]"></div>
-        <div className="flex-around p-3 h-full relative">
+        <div className="flex-around p-2 h-full relative">
           <div className="logo" ref={logoRef}>
             <img src="/logo.png" alt="" width={160} />
           </div>
@@ -49,7 +49,7 @@ function Nav() {
               <a href={`#${item.link}`}>{item.title}</a>
             </div>
           ))}
-          <div className="login text-[28px] font-[700] bg-[#3067D5] text-white p-4 px-10  rounded-[68px]">
+          <div className="login text-[28px] font-[700] bg-[#3067D5] text-white p-2 px-8  rounded-[68px]">
             <a href="#">sign in</a>
           </div>
         </div>

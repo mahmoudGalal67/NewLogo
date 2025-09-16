@@ -60,7 +60,7 @@ export default function Header() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".home",
-        start: "top 6%",
+        start: "top 4%",
         end: "+=100%",
         scrub: true,
         pin: wrapper,
@@ -92,7 +92,7 @@ export default function Header() {
   }, []);
 
   return (
-    <main className="home mt-[90px]" dir="ltr">
+    <main className="home mt-[70px]" dir="ltr">
       <div ref={wrapperRef} className="wrapper relative overflow-hidden">
         {/* Background images */}
         <img
