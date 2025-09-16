@@ -42,7 +42,7 @@ function Brands() {
         >
           {brands1.map((item, i) => (
             <SwiperSlide key={i}>
-              <img src={`/public/brands/${item.img}`} alt="" />
+              <img src={`/brands/${item.img}`} alt="" />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -65,7 +65,7 @@ function Brands() {
         >
           {brands1.map((item, i) => (
             <SwiperSlide key={i}>
-              <img src={`/public/brands/${item.img}`} alt="" />
+              <img src={`/brands/${item.img}`} alt="" />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -111,7 +111,7 @@ function Brands() {
         >
           {brands1.map((item, i) => (
             <SwiperSlide key={i}>
-              <img src={`/public/brands/${item.img}`} alt="" />
+              <img src={`/brands/${item.img}`} alt="" />
             </SwiperSlide>
           ))}
         </Swiper>
