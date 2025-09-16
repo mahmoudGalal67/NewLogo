@@ -56,9 +56,9 @@ function About() {
         ref={ref}
         className="wrapper flex justify-between flex-wrap md:gap-8 gap-1"
       >
-        <div className="item info-item flex flex-col items-start justify-center gap-1 lg:p-[28px] p-[12px] lg:py-[72px] py-[48px] rounded-[48px] lg:w-[64%] w-full">
-          <h3 className="text-[42px] font-bold md:mr-16 mr-0 mb-5">من نحن </h3>
-          <p className="text-[28px] text-right md:w-[65%]">
+        <div className="item info-item flex flex-col items-start justify-center gap-1 lg:p-[18px] p-[12px] lg:py-[36px] py-[28px] rounded-[48px] lg:w-[64%] w-full">
+          <h3 className="text-[42px] font-bold md:mr-16 mr-0 mb-3">من نحن </h3>
+          <p className="text-[20px] text-right md:w-[65%]">
             شركة سعودية رائدة في تصميم العلامات التجارية لنجعل من هويات وشعارات
             الشركات والمنتجات السعودية قوة حضور بصري تنافس قوة الشعارات العالمية
             حول العالم
