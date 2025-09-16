@@ -4,14 +4,16 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
+
 gsap.registerPlugin(ScrollTrigger);
 
 function About() {
   const sectionRef = useRef(null);
   const { ref, inView } = useInView({
     triggerOnce: true, // only run once
-    threshold: 0.5, // start when 50% visible
+    threshold: 0.1, // 👈 smaller threshold for mobile
   });
+
   useEffect(() => {
     const section = sectionRef.current;
     const items = section.querySelectorAll(".item");
@@ -19,11 +21,11 @@ function About() {
     gsap.fromTo(
       items,
       {
-        y: 200, // start lower
+        y: 200,
         x: (i, el) =>
           window.innerWidth / 2 -
           el.getBoundingClientRect().left -
-          el.offsetWidth / 2, // center of screen
+          el.offsetWidth / 2,
         autoAlpha: 0,
       },
       {
@@ -32,15 +34,12 @@ function About() {
         autoAlpha: 1,
         duration: 2,
         ease: "power3.out",
-        stagger: {
-          each: 0.2,
-        },
+        stagger: { each: 0.2 },
         scrollTrigger: {
           trigger: section,
-          start: "top 80%",
-          end: "bottom 60%",
-          toggleActions: "play none none none", // 👈 don't reset
-          once: true, // 👈 run only once
+          start: "top 90%", // 👈 start earlier for mobile
+          toggleActions: "play none none none",
+          once: true,
         },
       }
     );
@@ -55,16 +54,18 @@ function About() {
     >
       <div
         ref={ref}
-        className="wrapper flex  justify-between flex-wrap md:gap-8 gap-1"
+        className="wrapper flex justify-between flex-wrap md:gap-8 gap-1"
       >
         <div className="item info-item flex flex-col items-start justify-center gap-1 lg:p-[28px] p-[12px] lg:py-[72px] py-[48px] rounded-[48px] lg:w-[64%] w-full">
           <h3 className="text-[42px] font-bold md:mr-16 mr-0 mb-5">من نحن </h3>
-          <p className="text-[28px text-right md:w-[65%]">
+          <p className="text-[28px] text-right md:w-[65%]">
             شركة سعودية رائدة في تصميم العلامات التجارية لنجعل من هويات وشعارات
             الشركات والمنتجات السعودية قوة حضور بصري تنافس قوة الشعارات العالمية
             حول العالم
           </p>
         </div>
+
+        {/* Counters */}
         <div className="item flex flex-col items-center justify-center gap-1 lg:p-[28px] p-[12px] lg:py-[72px] py-[48px] rounded-[48px] lg:w-[28%] w-[45%]">
           {inView && (
             <CountUp start={0} end={180} duration={1.75} suffix=" +">
@@ -80,6 +81,7 @@ function About() {
             مشروع ناجح
           </span>
         </div>
+
         <div className="item flex flex-col items-center justify-center gap-1 lg:p-[28px] p-[12px] lg:py-[72px] py-[48px] rounded-[48px] lg:w-[28%] w-[45%]">
           {inView && (
             <CountUp start={0} end={500} duration={1.75} suffix=" +">
@@ -92,9 +94,10 @@ function About() {
             </CountUp>
           )}
           <span className="lg:text-[28px] text-[14px] text-black">
-            عميل سعيد{" "}
+            عميل سعيد
           </span>
         </div>
+
         <div className="item flex flex-col items-center justify-center gap-1 lg:p-[28px] p-[12px] lg:py-[72px] py-[48px] rounded-[48px] lg:w-[28%] w-[45%]">
           {inView && (
             <CountUp start={0} end={30} duration={1.75} suffix=" +">
@@ -107,9 +110,10 @@ function About() {
             </CountUp>
           )}
           <span className="lg:text-[28px] text-[14px] text-black">
-            سنة خبرة{" "}
+            سنة خبرة
           </span>
         </div>
+
         <div className="item flex flex-col items-center justify-center gap-1 lg:p-[28px] p-[12px] lg:py-[72px] py-[48px] rounded-[48px] lg:w-[28%] w-[45%]">
           {inView && (
             <CountUp start={0} end={20} duration={1.75} suffix=" +">
@@ -122,7 +126,7 @@ function About() {
             </CountUp>
           )}
           <span className="lg:text-[28px] text-[14px] text-black">
-            شريك استراتيجي{" "}
+            شريك استراتيجي
           </span>
         </div>
       </div>
