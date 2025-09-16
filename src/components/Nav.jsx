@@ -82,7 +82,11 @@ function Nav() {
           { scale: 1, opacity: 1, rotate: 0, duration: 0.35 },
           0
         )
-        .to(menuRef.current, { y: 0, opacity: 1, duration: 0.44 }, 0)
+        .to(
+          menuRef.current,
+          { y: 0, opacity: 1, duration: 0.44, display: "flex" },
+          0
+        )
         .fromTo(
           linksRef.current,
           { y: -10, opacity: 0 },
@@ -96,7 +100,11 @@ function Nav() {
         stagger: 0.03,
         duration: 0.18,
       })
-        .to(menuRef.current, { y: -30, opacity: 0, duration: 0.35 }, "-=0.08")
+        .to(
+          menuRef.current,
+          { y: -30, opacity: 0, display: "none", duration: 0.35 },
+          "-=0.08"
+        )
         .to(closeRef.current, { scale: 0, opacity: 0, duration: 0.22 }, "-=0.2")
         .to(
           burgerRef.current,
@@ -185,7 +193,7 @@ function Nav() {
             {/* dropdown menu */}
             <div
               ref={menuRef}
-              className="menu-wrapper w-full left-0 fixed z-[1000] bg-amber-50 top-[90px] rounded-3xl flex flex-col items-center justify-center gap-5 p-8"
+              className="menu-wrapper w-full left-0 hidden  fixed z-[1000] bg-amber-50 top-[90px] rounded-3xl  flex-col items-center justify-center gap-5 p-8"
               aria-hidden={!showmenu}
             >
               {Links.map((item, index) => (

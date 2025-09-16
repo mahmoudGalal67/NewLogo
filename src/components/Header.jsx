@@ -1,12 +1,25 @@
 "use client";
-import { useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function Header() {
   const wrapperRef = useRef(null);
+  const imagesRef = useRef([]);
+  const infoRef = useRef([]);
+  const currentRef = useRef(0); // latest index
+  const animatingRef = useRef(false);
+  const interactingRef = useRef(false);
+  const autoplayRef = useRef(null);
+  const restartTimerRef = useRef(null);
+
+  const [current, setCurrent] = useState(0);
+
+  // timings
+  const AUTOPLAY_DELAY = 3000; // 3s between slides
+  const RESTART_DELAY = 1500; // restart autoplay after user interaction
+  const DRAG_THRESHOLD = 80; // px required to trigger slide
+  const ANIMATION_DURATION = 1; // 1 second GSAP animation
+
   const info = [
     {
       title: "Project Name 1",
@@ -41,59 +54,193 @@ export default function Header() {
       ],
     },
   ];
+
+  // Initialize refs and GSAP states
   useEffect(() => {
-    const wrapper = wrapperRef.current;
     const images = gsap.utils.toArray(".header-image");
     const infoItems = gsap.utils.toArray(".info");
 
-    const total = images.length;
-    if (!wrapper || total === 0) return;
+    imagesRef.current = images;
+    infoRef.current = infoItems;
 
-    // Hide all images except the first
-    gsap.set(images, { autoAlpha: 0, y: "-20%" });
-    gsap.set(images[0], { autoAlpha: 1, y: "0%" });
-    // Hide all Info except the first
-    gsap.set(infoItems, { autoAlpha: 0, y: "-80%" });
-    gsap.set(infoItems[0], { autoAlpha: 1, y: "0%" });
+    // initial states
+    gsap.set(images, { autoAlpha: 0, x: "20%" });
+    if (images[0]) gsap.set(images[0], { autoAlpha: 1, x: "0%" });
 
-    // Timeline mapped to pinned scroll
+    gsap.set(infoItems, { autoAlpha: 0, x: "40%" });
+    if (infoItems[0]) gsap.set(infoItems[0], { autoAlpha: 1, x: "0%" });
+
+    startAutoplay();
+
+    return () => {
+      stopAutoplay();
+      clearTimeout(restartTimerRef.current);
+    };
+  }, []);
+
+  // Core animation
+  const animateSlide = (nextIndex, direction) => {
+    const images = imagesRef.current;
+    const infoItems = infoRef.current;
+    if (
+      !images.length ||
+      animatingRef.current ||
+      nextIndex === currentRef.current
+    )
+      return;
+
+    const curr = currentRef.current;
+    animatingRef.current = true;
+
     const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".home",
-        start: "top 4%",
-        end: "+=100%",
-        scrub: true,
-        pin: wrapper,
+      onComplete: () => {
+        currentRef.current = nextIndex;
+        setCurrent(nextIndex);
+        animatingRef.current = false;
       },
     });
 
-    // Animate each image in/out
-    for (let i = 0; i < total - 1; i++) {
-      tl.to(images[i], { autoAlpha: 0, y: "-20%", duration: 1 }, i);
-      tl.to(infoItems[i], { autoAlpha: 0, y: "-80%", duration: 1 }, i);
-      tl.fromTo(
-        images[i + 1],
-        { autoAlpha: 0, y: "-20%" },
-        { autoAlpha: 1, y: "0%", duration: 1 },
-        i
-      );
-      tl.fromTo(
-        infoItems[i + 1],
-        { autoAlpha: 0, y: "-80%" },
-        { autoAlpha: 1, y: "0%", duration: 1 },
-        i
-      );
+    tl.to(
+      images[curr],
+      {
+        autoAlpha: 0,
+        x: -20 * direction + "%",
+        duration: ANIMATION_DURATION,
+        ease: "power2.inOut",
+      },
+      0
+    );
+    tl.to(
+      infoItems[curr],
+      {
+        autoAlpha: 0,
+        x: -40 * direction + "%",
+        duration: ANIMATION_DURATION,
+        ease: "power2.inOut",
+      },
+      0
+    );
+
+    tl.fromTo(
+      images[nextIndex],
+      { autoAlpha: 0, x: 20 * direction + "%" },
+      {
+        autoAlpha: 1,
+        x: "0%",
+        duration: ANIMATION_DURATION,
+        ease: "power2.inOut",
+      },
+      0
+    );
+    tl.fromTo(
+      infoItems[nextIndex],
+      { autoAlpha: 0, x: 40 * direction + "%" },
+      {
+        autoAlpha: 1,
+        x: "0%",
+        duration: ANIMATION_DURATION,
+        ease: "power2.inOut",
+      },
+      0
+    );
+  };
+
+  const showNext = () => {
+    const len = imagesRef.current.length || 1;
+    const next = (currentRef.current + 1) % len;
+    animateSlide(next, 1);
+  };
+
+  const showPrev = () => {
+    const len = imagesRef.current.length || 1;
+    const prev = (currentRef.current - 1 + len) % len;
+    animateSlide(prev, -1);
+  };
+
+  // Autoplay control
+  const startAutoplay = () => {
+    stopAutoplay();
+    autoplayRef.current = setInterval(() => {
+      if (!animatingRef.current && !interactingRef.current) {
+        showNext();
+      }
+    }, AUTOPLAY_DELAY);
+  };
+
+  const stopAutoplay = () => {
+    if (autoplayRef.current) {
+      clearInterval(autoplayRef.current);
+      autoplayRef.current = null;
     }
+  };
+
+  // Mouse drag (left click only)
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+
+    let startX = 0;
+    let pointerId = null;
+
+    const onPointerDown = (e) => {
+      if (!e.isPrimary) return;
+      interactingRef.current = true;
+      startX = e.clientX;
+      pointerId = e.pointerId;
+      stopAutoplay();
+      try {
+        wrapper.setPointerCapture(pointerId);
+      } catch {}
+      e.preventDefault();
+    };
+
+    const onPointerUp = (e) => {
+      if (!interactingRef.current) return;
+      const diff = e.clientX - startX;
+      if (diff > DRAG_THRESHOLD) {
+        showNext();
+      } else if (diff < -DRAG_THRESHOLD) {
+        showPrev();
+      }
+      interactingRef.current = false;
+      try {
+        wrapper.releasePointerCapture(pointerId);
+      } catch {}
+      clearTimeout(restartTimerRef.current);
+      restartTimerRef.current = setTimeout(
+        () => startAutoplay(),
+        RESTART_DELAY
+      );
+    };
+
+    const onPointerCancel = () => {
+      interactingRef.current = false;
+      clearTimeout(restartTimerRef.current);
+      restartTimerRef.current = setTimeout(
+        () => startAutoplay(),
+        RESTART_DELAY
+      );
+    };
+
+    wrapper.addEventListener("pointerdown", onPointerDown, { passive: false });
+    wrapper.addEventListener("pointerup", onPointerUp);
+    wrapper.addEventListener("pointercancel", onPointerCancel);
+    wrapper.addEventListener("pointerleave", onPointerCancel);
 
     return () => {
-      if (tl.scrollTrigger) tl.scrollTrigger.kill();
-      tl.kill();
+      wrapper.removeEventListener("pointerdown", onPointerDown);
+      wrapper.removeEventListener("pointerup", onPointerUp);
+      wrapper.removeEventListener("pointercancel", onPointerCancel);
+      wrapper.removeEventListener("pointerleave", onPointerCancel);
     };
   }, []);
 
   return (
     <main className="home mt-[70px]" dir="ltr">
-      <div ref={wrapperRef} className="wrapper relative overflow-hidden">
+      <div
+        ref={wrapperRef}
+        className="wrapper relative overflow-hidden select-none"
+      >
         {/* Background images */}
         <img
           src="/main1.jpg"
@@ -126,8 +273,8 @@ export default function Header() {
               <span className="line-heading inline-block">{item.title}</span>
             </h2>
             <p className="lg:text-[18px] text-[16px] lg:text-start text-center">
-              {item?.para?.map((p, i) => (
-                <span key={i} className="block overflow-hidden">
+              {item.para.map((p, j) => (
+                <span key={j} className="block overflow-hidden">
                   <span className="line-para inline-block">{p}</span>
                 </span>
               ))}
