@@ -60,7 +60,7 @@ export default function Header() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".home",
-        start: "top 12%",
+        start: "top 6%",
         end: "+=100%",
         scrub: true,
         pin: wrapper,

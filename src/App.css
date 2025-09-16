@@ -25,6 +25,7 @@ nav.nav-container {
   margin: 0 auto;
   top: 3%;
   position: fixed;
+  width: 75%;
 }
 
 main .wrapper {
