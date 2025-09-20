@@ -27,6 +27,7 @@ nav.nav-container {
   top: 3%;
   position: fixed;
   width: 75%;
+  z-index: 1000;
 }
 nav.nav-container .nav-link {
   position: relative;
@@ -40,6 +41,12 @@ nav.nav-container .nav-link {
 
 main .wrapper {
   height: calc(100vh - 120px);
+}
+
+@media (max-width: 770px) {
+  main .wrapper {
+    height: calc(100vh - 390px);
+  }
 }
 
 .logo {
@@ -94,7 +101,7 @@ main .info {
   font-weight: 700; /* bold */
 }
 .about-us .wrapper .item h3 {
-  font-family: "Poppins", sans-serif;
+  /* font-family: "Poppins", sans-serif; */
   font-weight: 600;
 }
 .about-us .wrapper .item.info-item {
@@ -107,9 +114,9 @@ main .info {
 
 /* ABout-us */
 
-/* Our_projects */
+/* Our_Services */
 
-section#Projects .wrapper .item {
+section#Services .wrapper .item {
   overflow: hidden;
   background-position: top;
   background-size: cover;
@@ -117,7 +124,7 @@ section#Projects .wrapper .item {
   position: relative; /* needed for stacking */
   background-color: rgba(0, 0, 0, 0.9);
 }
-section#Projects .wrapper .item::after {
+section#Services .wrapper .item::after {
   content: "";
   position: absolute;
   inset: 0; /* covers the whole card */
@@ -127,7 +134,7 @@ section#Projects .wrapper .item::after {
   z-index: -1;
   pointer-events: none; /* allow clicks to pass through */
 }
-section#Projects .wrapper .item:hover {
+section#Services .wrapper .item:hover {
   transform: scale(1.2); /* adjust factor until ~800px */
   z-index: 10;
   opacity: 0.65; /* slightly see-through */
@@ -136,15 +143,15 @@ section#Projects .wrapper .item:hover {
     /* mid glow */ 0 0 80px rgba(13, 38, 82, 0.7),
     /* outer glow */ 0 0 120px rgba(4, 28, 70, 0.5); /* wide soft glow */
 }
-section#Projects .wrapper .item:hover::after {
+section#Services .wrapper .item:hover::after {
   opacity: 1;
 }
 
-section#Projects .wrapper .item a {
+section#Services .wrapper .item a {
   transition: all 0.3s ease-in-out;
 }
 
-section#Projects .wrapper .item:hover button {
+section#Services .wrapper .item:hover button {
   opacity: 1; /* slightly see-through */
   transition: all 0.3s ease-in;
   text-shadow: 0 0 10px rgba(7, 55, 138, 1),
@@ -156,4 +163,4 @@ section#Projects .wrapper .item:hover button {
     /* scatter glow */ 0 0 200px rgba(7, 55, 138, 0.75); /* farthest glow */
 }
 
-/* Our_projects */
+/* Our_Services */

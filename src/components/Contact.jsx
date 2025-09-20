@@ -5,9 +5,12 @@ const ContactForm = () => {
     <div
       className="flex justify-center items-center min-h-screen  p-4 "
       dir="ltr"
+      id="Contact"
     >
       <div className="bg-[#E0E0E0] rounded-xl shadow-lg p-8 w-full md:w-[80%]  text-start">
-        <h1 className="mb-8 mt-[5] text-4xl font-bold">Contact us</h1>
+        <h1 className="mb-8 mt-[5] text-4xl font-bold md:text-start text-center">
+          Contact us
+        </h1>
 
         <form>
           {/* Name Input */}

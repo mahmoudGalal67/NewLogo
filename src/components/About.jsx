@@ -91,12 +91,14 @@ function About() {
     <section
       id="About-us"
       ref={sectionRef}
-      className="about-us mt-36 lg:px-28 px-5"
+      className="about-us md:mt-36 mt-3 lg:px-28 px-5"
       dir=""
     >
       <div className="wrapper flex  justify-between flex-wrap md:gap-8 gap-1">
-        <div className="item info-item flex flex-col items-start justify-center gap-1 lg:p-[22px] p-[10px] lg:py-[48px] py-[32px] rounded-[48px] lg:w-[64%] w-full">
-          <h3 className="text-[42px] font-bold md:mr-16 mr-0 mb-3">من نحن </h3>
+        <div className="item info-item flex flex-col items-start justify-center gap-1 lg:p-[22px] p-[10px] lg:py-[48px] py-[16px] rounded-[48px] lg:w-[64%] w-full">
+          <h3 className="md:text-[42px] text-[32px] font-bold md:mr-16 mr-0 mb-3">
+            من نحن{" "}
+          </h3>
           <p className="text-[22px] text-right md:w-[65%]">
             شركة سعودية رائدة في تصميم العلامات التجارية لنجعل من هويات وشعارات
             الشركات والمنتجات السعودية قوة حضور بصري تنافس قوة الشعارات العالمية

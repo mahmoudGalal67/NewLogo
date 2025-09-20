@@ -84,11 +84,13 @@ function Projects() {
 
   return (
     <section
-      id="Projects"
+      id="Services"
       ref={sectionRef}
       className="lg:p-12 p-5 bg-[#EBEBEB] mt-24 rounded-[48px]"
     >
-      <h2 className="mb-8 mt-[5] text-4xl font-bold">مشاريعنا</h2>
+      <h2 className="mb-8 mt-[5] text-4xl font-bold md:text-start text-center">
+        أعمالنا
+      </h2>
       <div className="wrapper flex-around lg:gap-12 gap-3 flex-wrap items-start">
         {projects.map((item) => (
           <div

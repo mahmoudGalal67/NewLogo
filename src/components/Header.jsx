@@ -236,7 +236,7 @@ export default function Header() {
   }, []);
 
   return (
-    <main className="home mt-[70px]" dir="ltr">
+    <main className="home mt-[70px]  " dir="ltr" id="Header">
       <div
         ref={wrapperRef}
         className="wrapper relative overflow-hidden select-none"
@@ -244,22 +244,22 @@ export default function Header() {
         {/* Background images */}
         <img
           src="/main1.jpg"
-          className="header-image absolute inset-0 w-full h-full object-cover rounded-[64px]"
+          className="header-image absolute inset-0 w-full h-full object-cover md:rounded-[64px] rounded-4xl"
           alt=""
         />
         <img
           src="/main2.jpeg"
-          className="header-image absolute inset-0 w-full h-full object-cover rounded-[64px]"
+          className="header-image absolute inset-0 w-full h-full object-cover md:rounded-[64px] rounded-4xl"
           alt=""
         />
         <img
           src="/main3.jpeg"
-          className="header-image absolute inset-0 w-full h-full object-cover rounded-[64px]"
+          className="header-image absolute inset-0 w-full h-full object-cover md:rounded-[64px] rounded-4xl"
           alt=""
         />
         <img
           src="/main4.jpeg"
-          className="header-image absolute inset-0 w-full h-full object-cover rounded-[64px]"
+          className="header-image absolute inset-0 w-full h-full object-cover md:rounded-[64px] rounded-4xl"
           alt=""
         />
 

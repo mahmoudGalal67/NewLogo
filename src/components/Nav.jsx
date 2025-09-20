@@ -5,12 +5,25 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
 const Links = [
-  { title: "الرئيسية", link: "About-us" },
-  { title: "خدماتنا", link: "About-us" },
+  { title: "الرئيسية", link: "Header" },
+  { title: "خدماتنا", link: "Services" },
   { title: "من نحن", link: "About-us" },
-  { title: "مشاريعنا", link: "About-us" },
+  { title: "مشاريعنا", link: "Projects" },
 ];
 
+function useScrollToHash() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const sectionId = location.hash.replace("#", "");
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]); // runs whenever the route (or hash) changes
+}
 function Nav() {
   const logoRef = useRef();
   const [showmenu, setshowmenu] = useState(false);
@@ -23,9 +36,16 @@ function Nav() {
   const linksRef = useRef([]); // store nav links
   const location = useLocation();
   const navigate = useNavigate();
+
+  useScrollToHash();
+
   const handlelocation = (section) => {
     if (location.pathname !== "/") {
       navigate(`/#${section}`);
+    }
+    const sectionref = document.getElementById(section);
+    if (sectionref) {
+      sectionref.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -200,7 +220,7 @@ function Nav() {
                 <div
                   ref={(el) => setLinkRef(el, index)}
                   className="
-                   nav-link lg:text-[24px] text-[24px] font-[700] hover:text-[#3067D5] relative"
+                  nav-link lg:text-[24px] text-[24px] font-[700] hover:text-[#3067D5] relative"
                   key={index}
                 >
                   <a
@@ -223,11 +243,11 @@ function Nav() {
                   onClick={(e) => {
                     setshowmenu(false);
                     e.preventDefault();
-                    handlelocation(item.link);
+                    handlelocation("Contact");
                   }}
                   href="#"
                 >
-                  sign in
+                  تواصل
                 </a>
               </div>
             </div>
@@ -262,11 +282,11 @@ function Nav() {
               onClick={(e) => {
                 handleClick(e, "sign in");
                 e.preventDefault();
-                handlelocation("sign in");
+                handlelocation("Contact");
               }}
               className="nav-link text-[22px] font-[700]"
             >
-              <a href="#">sign in</a>
+              <a href="#">تواصل </a>
             </div>
             <span className="nav-indicator opacity-0"></span>
           </div>
