@@ -99,7 +99,7 @@ function About() {
           <h3 className="md:text-[42px] text-[32px] font-bold md:mr-16 mr-0 mb-3">
             من نحن{" "}
           </h3>
-          <p className="text-[22px] text-right md:w-[65%]">
+          <p className="md:text-[22px] text-[18px] text-right md:w-[65%]">
             شركة سعودية رائدة في تصميم العلامات التجارية لنجعل من هويات وشعارات
             الشركات والمنتجات السعودية قوة حضور بصري تنافس قوة الشعارات العالمية
             حول العالم
